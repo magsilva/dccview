@@ -1,16 +1,20 @@
 #include <kudzu/kudzu.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
  * To compile it type:
  * gcc monitor_detect.c -o monitor_detect.out -lkudzu -lpci -static
 */
+
+#define MODE_SIZE 32
+
 int main () {
 	int i=0;
 	struct ddcDevice *monitor = NULL;
 	struct device **hw;
-	//char buf[128];
-	char buf[1024];
+  char *buf = NULL;
 
 	initializeDeviceList();
 
@@ -39,6 +43,7 @@ int main () {
 			printf(" ");
 		}
 		printf("%dx%d", monitor->modes[i], monitor->modes[i + 1]);
+		buf = (char *)realloc( buf, 1 + ( i / 2 ) * MODE_SIZE );
 	}
 	printf("'\n");
 	printf("End of 'Monitor modes'.\n");
