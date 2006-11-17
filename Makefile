@@ -3,4 +3,4 @@ LIBS= -lkudzu -lpci
 CFLAGS= -static
 
 all:
-	$(CC) dccView.c $(LIBS) $(CFLAGS) -o dccView
+	$(CC) dccview.c $(LIBS) $(CFLAGS) -o dccview
